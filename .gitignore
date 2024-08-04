@@ -1,0 +1,57 @@
+# Build directory
+/build/
+
+# Latexindent log file
+indent.log
+
+# LaTeX temporary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# Bibliography auxiliary files (bibtex/biblatex/biber)
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Build tool auxiliary files
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Intermediate documents
+*.dvi
+*.xdv
+*-converted-to.*
+
+# Output files
+# Uncomment the next line if you want to ignore the output PDF
+# *.pdf
+
+# Mac OS specific files
+.DS_Store
+
+# Editor specific files
+*.swp
+*.bak
+*.tmp
+*~
+
+# Ignore all log files except for the indent.log in build directory
+*.log
+!/build/indent.log
