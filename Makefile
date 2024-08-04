@@ -8,7 +8,8 @@ SRC_DIR = src
 LATEX = xelatex # LaTeX 编译器
 BIBER = biber # 参考文献处理工具
 
-LATEX_FLAGS = -shell-escape -interaction=nonstopmode # LaTeX 编译选项
+LATEX_FLAGS = -shell-escape -interaction=nonstopmode -synctex=1 -output-directory=$(BUILD_DIR)
+# LATEX_FLAGS = -shell-escape -interaction=nonstopmode # LaTeX 编译选项
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.tex) # 获取所有源文件
 CHAPTER_NAMES = $(notdir $(basename $(SRC_FILES))) # 提取章节名称
