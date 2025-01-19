@@ -1,5 +1,5 @@
 # Build directory
-/build/
+*/build/
 
 # Latexindent log file
 indent.log
