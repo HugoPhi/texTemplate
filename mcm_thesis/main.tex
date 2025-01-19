@@ -1,0 +1,114 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 美国大学生数学建模竞赛（MCM/ICM）论文模板
+%%% 来源网站：www.latexstudio.net
+%%% 中文注释：小嗷犬 blog.marquis.eu.org
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% code: 代码文件夹
+%%% figures: 图片文件夹
+%%% *.cls: LaTeX 格式文件
+%%% *.tex: LaTeX 文档文件
+%%% *.bib: Bib 引用文献源文件
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 可能用到的网站
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LaTeX公式编辑器：https://www.latexlive.com/
+%%% Diagram流程图绘制：https://www.drawio.com/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 模板参数设置
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{mcmthsis}  % 文档类型
+\mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
+        tcn = 12345678,   % 队伍控制号
+        problem = ABCDEF,  % 选题
+        sheet = true,   % sheet页
+        titleinsheet = true,   % sheet页显示标题
+        keywordsinsheet = true,  % sheet页显示关键词
+        titlepage = false,   % 标题页
+        abstract = true  % 摘要
+        }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 导入宏包和引用文献源
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{palatino}  % 帕拉提诺体字体宏包
+\usepackage{lipsum}  % 导入生成段落的宏包
+\usepackage[hyperref=true,style=ieee]{biblatex}  % biblatex参考文献宏包
+\addbibresource{ref.bib}  % 添加引用文献bib源
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 文档信息设置
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{The MCM Thesis of Team 12345678}  % 文章标题
+\author{\small Team 12345678}  % 作者，开启标题页才会显示
+\date{\today}  % 日期，开启标题页才会显示
+
+\memoto{MCM office}  % 建议书目标
+\memofrom{MCM Team 12345678}  % 建议书来源
+\memosubject{MCM}  % 建议书主题
+\memodate{\today}  % 建议书日期
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 文档开始
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}  % 文档
+\begin{abstract}  % 摘要
+This is a summary.
+\begin{keywords}  % 关键词
+keyword1, keyword2, keyword3
+\end{keywords}  % 结束关键词
+\end{abstract}  % 结束摘要
+\maketitle  % 生成sheet页
+\tableofcontents  % 生成目录表
+
+
+%%%%%%%%%%%%%%%%%% sheet页与目录页结束 %%%%%%%%%%%%%%%%%%
+
+\newpage  % 开始新的一页
+\include{src/0_introduction}
+\include{src/1_analysis_of_the_problem}
+\include{src/2_calculating_and_simplifying_the_model}
+\include{src/3_the_model_results}
+\include{src/4_validating_the_model}
+\include{src/5_conclusions}
+\include{src/6_summary}
+\include{src/7_evaluate_of_the_mode}
+\include{src/8_strengths_and_weaknesses}
+
+%%% 引用
+\newpage
+\printbibliography  % 打印引用文献列表
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% 正文结束 %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\begin{appendices}  % 附录
+
+\begin{memo}[Memorandum]  % 建议书
+	This is a memorandum.
+\end{memo}  % 建议书结束
+
+\section{First appendix}  % 一级标题
+
+Here are simulation programmes we used in our model as follow.\\
+\textbf{MATLAB source code:}
+\lstinputlisting[language=C++]{./code/main.cpp}
+
+\section{Second appendix}  % 一级标题
+
+\textbf{Python source code:}
+\lstinputlisting[language=python]{./code/python.py}
+
+\end{appendices}  % 附录结束
+
+\end{document}  % 文档结束
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
