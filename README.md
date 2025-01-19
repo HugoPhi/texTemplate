@@ -2,5 +2,5 @@
 
 一些实用的LaTeX模板。
 
-- [DeepLearning](https://github.com/tibless/texTemplate/blob/main/deep_learning/README.md)
-- [MCM Thesis](https://github.com/tibless/texTemplate/blob/main/mcm_thesis/README.md)
+- [DeepLearning](https://github.com/HugoPhi/texTemplate/tree/main/deep_learning)
+- [MCM Thesis](https://github.com/HugoPhi/texTemplate/tree/main/mcm_thesis)
