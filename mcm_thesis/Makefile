@@ -60,6 +60,7 @@ clean:
 		$(BUILDDIR)/*.xml \
 		$(BUILDDIR)/*.toc \
 		$(BUILDDIR)/*.bib \
+		$(FIGURESDIR)/*.pdf \
 		# $(BUILDDIR)/*.pdf
 
 # 伪目标
