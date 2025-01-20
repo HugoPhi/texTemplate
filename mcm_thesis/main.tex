@@ -21,15 +21,16 @@
 %%% 模板参数设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass{mcmthsis}  % 文档类型
-\mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
-        tcn = 12345678,   % 队伍控制号
-        problem = ABCDEF,  % 选题
+\mcmsetup{
+        CTeX = false,   % 使用 CTeX 套装时，设置为 true
+        tcn = 9555,   % 队伍控制号
+        problem = B,  % 选题
         sheet = true,   % sheet页
         titleinsheet = true,   % sheet页显示标题
         keywordsinsheet = true,  % sheet页显示关键词
         titlepage = false,   % 标题页
         abstract = true  % 摘要
-        }
+      }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,12 +45,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 文档信息设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{The MCM Thesis of Team 12345678}  % 文章标题
-\author{\small Team 12345678}  % 作者，开启标题页才会显示
+\title{Submersible Rescue}  % 文章标题
+\author{\small Team 9555}  % 作者，开启标题页才会显示
 \date{\today}  % 日期，开启标题页才会显示
 
 \memoto{MCM office}  % 建议书目标
-\memofrom{MCM Team 12345678}  % 建议书来源
+\memofrom{MCM Team 9555}  % 建议书来源
 \memosubject{MCM}  % 建议书主题
 \memodate{\today}  % 建议书日期
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,7 +63,7 @@
 \begin{abstract}  % 摘要
 This is a summary.
 \begin{keywords}  % 关键词
-keyword1, keyword2, keyword3
+AHP; SAR(submersible search and rescue); Monte Carlo sampling; Runge-Kuta; Sensitivity Analysis.
 \end{keywords}  % 结束关键词
 \end{abstract}  % 结束摘要
 \maketitle  % 生成sheet页
@@ -73,14 +74,13 @@ keyword1, keyword2, keyword3
 
 \newpage  % 开始新的一页
 \include{src/0_introduction}
-\include{src/1_analysis_of_the_problem}
-\include{src/2_calculating_and_simplifying_the_model}
-\include{src/3_the_model_results}
-\include{src/4_validating_the_model}
-\include{src/5_conclusions}
-\include{src/6_summary}
-\include{src/7_evaluate_of_the_mode}
-\include{src/8_strengths_and_weaknesses}
+\include{src/1_assumption}
+\include{src/2_list_of_notation}
+\include{src/3_model_i}
+\include{src/4_model_ii}
+\include{src/5_model_iii}
+\include{src/6_sensitivity_analysis}
+\include{src/7_strengths_and_weaknesses}
 
 %%% 引用
 \newpage
