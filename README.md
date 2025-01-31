@@ -2,22 +2,6 @@
 
 这是一个用于编写深度学习相关论文的 LaTeX 模板，特别适用于多层感知器（MLP）等主题。本模板提供了一个结构化的框架，便于组织内容、添加图片和参考文献。
 
-## 项目结构
-
-```
-project_root/
-├── main.tex              # 主 LaTeX 文件
-├── src/                  # 章节文件目录
-│   ├── chapter1.tex
-│   └── chapter2.tex
-├── images/               # 图片目录
-├── build/                # 编译输出目录
-├── references.bib        # 参考文献文件
-├── .latexindent.yaml     # Latexindent 配置文件
-├── Makefile              # 自动化编译脚本
-└── README.md
-```
-
 ## 如何使用这个模板
 
 ### 1. 添加新章节
@@ -97,6 +81,7 @@ make
 
 如果您有改进这个模板的建议，请开 issue 或提交 pull request。
 
-## 许可
+## LISENCE 
 
-[选择合适的许可证，例如 MIT、GPL 等]
+> This project is licensed under the terms of the **Apache License 2.0**. See [LICENSE](./LICENSE) for more details.
+
