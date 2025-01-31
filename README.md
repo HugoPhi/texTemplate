@@ -1,6 +1,3 @@
-![image](https://github.com/user-attachments/assets/92967fd5-8d74-4bed-ae3b-9e4cf549e874)
-
-
 # 美赛论文LaTeX模板
 
 ## 1. 序列号
