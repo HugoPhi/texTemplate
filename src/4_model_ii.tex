@@ -1,1 +1,10 @@
-\section{Model II: Search and rescue model}
+\section{Model II: AHP-based Rescue Equipment Selection Model}
+
+\[
+	\begin{aligned}
+		 & P(0,0,0)=1, i=0, j=0                                                                                \\
+		 & P(i, 0, k)=P(i-1,0, k-1) \times \frac{1}{3}, j=0, i \geq 1                                          \\
+		 & P(0, j, k)=P(i, j-1, k-1) \times \frac{1}{3}, i=0, j \geq 1                                         \\
+		 & P(i, j, k)=[P(i-1, j, k-1)+P(i, j-1, k-1)+P(i-1, j-1, k-1)] \times \frac{1}{3} ; i \geq 1, j \geq 1
+	\end{aligned}
+\]

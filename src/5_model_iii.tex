@@ -1,1 +1,132 @@
-\section{Extension of the model}
+\section{Model III: Rescue strategy and survival probability model}
+
+\subsection{Calculation of Ocean Current Velocity at Corresponding Depth}
+\
+\indent In force equilibrium:
+
+\begin{equation}
+	M_{\text{sub}} g = \rho(z_{\text{eq}}) g V_{\text{sub}}
+\end{equation}
+
+Solving for \( z_{\text{eq}} \):
+
+\begin{equation}
+	z_{\text{eq}} = \rho^{-1}\left(\frac{M_{\text{sub}}}{V_{\text{sub}}}\right)
+\end{equation}
+
+To solve for \( z_{\text{eq}} \), methods such as graphical methods, bisection method, or Newton’s method can be used, as the function is monotonic in the range \( 30m \sim 200m \). The following graph illustrates the density as a function of depth.
+
+%% The Newton's Method to solve z by given M & V
+\begin{algorithm}[H]
+	\caption{Fixed Point Iteration to Solve \( \rho(z) - \frac{M}{V} = 0 \)}
+	\begin{algorithmic}[1]
+		\STATE \textbf{Input:} Tolerance \( \epsilon \), Maximum iterations \( n_{\text{iter}} \), known constants \( M, V \)
+		\STATE \textbf{Output:} Solution \( z_{\text{eq}} \)
+
+		\STATE \( n \leftarrow 0 \)
+		\STATE \( z \leftarrow z_0 \sim \mathcal{U}(30, 200) \)
+
+		\WHILE{\( \left| z_{\text{new}} - z \right| > \epsilon \) \AND \( n < n_{\text{iter}} \)}
+		\STATE \( z_{\text{new}} \leftarrow \rho(z) + z - \frac{M}{V} \)
+		\STATE \( z \leftarrow z_{\text{new}} \)
+		\STATE \( n \leftarrow n + 1 \)
+		\ENDWHILE
+
+		\STATE \textbf{Return} \( z \)
+	\end{algorithmic}
+\end{algorithm}
+
+
+Then, the ocean current velocity can be calculated using the formula:
+
+\begin{equation}
+	v(z_{\text{eq}}) = v(z_0) \cdot e^{-\frac{z_{\text{eq}} - z_0}{\delta}}
+\end{equation}
+
+Where \( \delta = \sqrt{\frac{v}{\Omega \sin(\phi)}} \).
+
+In this case, we use \( \delta = 112m \) (assumed without questioning the reasoning behind it).
+
+
+\subsection{Calculating the Drift Distance of the Submersible During One Search Round}
+\
+\indent Assuming the ship quickly reaches a steady drift state, the speed of the submersible’s drift is the ocean current velocity. The distance the submersible will drift during one search period is:
+
+\[
+	s = t_{\text{search}} \cdot v(z_{\text{eq}})
+\]
+
+Typically, this distance \( s \) is several times the length \( d \), and the number of steps \( \Delta n \) is:
+
+\[
+	\Delta n = \lceil \frac{s}{d} \rceil
+\]
+
+This means: within one search cycle, the object might move several grid steps.
+
+
+\subsection{Search process}
+\
+\indent since we assume the time it takes for the rescue equipment to return to the starting search location is much smaller than the search time, we establish a grid starting from the initial loss of contact location at \( (0, 0, 0) \), where the last 0 represents the step.
+
+ignoring seasonal variations, we start with the assumption that the drifting probability for a grid point is:
+
+\[
+	\begin{bmatrix}
+		0 & \frac{1}{3} & \frac{1}{3} \\
+		0 & 0           & \frac{1}{3} \\
+		0 & 0           & 0           \\
+	\end{bmatrix}
+\]
+
+\noindent at step \( k \), the probability of finding the lost submersible at a given location is represented as:
+
+\[
+	p(i,j,k)
+\]
+
+\noindent the state transition equations are:
+
+\[
+	p(i,j,k) =
+	\begin{cases}
+		1,                                                                              & \text{if } i=0, j=0, k=0                \\
+		p(i-1,0,k-1) \times \frac{1}{3},                                                & \text{if } j=0, i \geq 1, k \geq 1      \\
+		p(0,j-1,k-1) \times \frac{1}{3},                                                & \text{if } i=0, j \geq 1, k \geq 1      \\
+		\left[ p(i-1,j,k-1) + p(i,j-1,k-1) + p(i-1,j-1,k-1) \right] \times \frac{1}{3}, & \text{if } i \geq 1, j \geq 1, k \geq 1
+	\end{cases}
+\]
+
+\noindent we calculate the probability matrix \( p[:,:,T_0] \), which represents the probability of finding the submersible at different locations at time \( t \).
+
+next, we find the coordinates corresponding to the maximum probability:
+
+\[
+	i^*, j^* \leftarrow \mathop{\arg\max}\limits_{i,j} p(i,j,T_0)
+\]
+
+\noindent then, we set:
+
+\[
+	p(i^*, j^*, T_0) \leftarrow 0
+\]
+
+this indicates that the submersible is not found at that location. we update the matrix \( p[:,:,T_0+\Delta n] \) and repeat the process.
+
+thus, by the \( k \)-th search round, the probability of finding the submersible is:
+
+\[
+	p(k) = \mathop{\max}\limits_{i,j} p(i,j,T_0+k\Delta n)
+\]
+
+we can compute this for multiple values of \( k = 1, 2, \dots, 20 \) and store the results in an array.
+
+Additionally, we can compare this strategy with a random search approach. in the random search, the probability of finding the submersible at time \( k \) is:
+
+\[
+	p(k) = \frac{1}{(T_0+k\Delta n)^2}
+\]
+
+\noindent finally, we can generate a comparison plot between the two strategies.
+
+

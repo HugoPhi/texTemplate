@@ -1,26 +1,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 美国大学生数学建模竞赛（MCM/ICM）论文模板
-%%% 来源网站：www.latexstudio.net
-%%% 中文注释：小嗷犬 blog.marquis.eu.org
+%%%%%% 美国大学生数学建模竞赛（MCM/ICM）论文模板
+%%%%%% Copyright © 2025 Yunming Hu. All rights reserved.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% code: 代码文件夹
-%%% figures: 图片文件夹
-%%% *.cls: LaTeX 格式文件
-%%% *.tex: LaTeX 文档文件
-%%% *.bib: Bib 引用文献源文件
+%%%%%% 文件功能说明
+%%% main.tex      : 主LaTeX文件
+%%% ref.bib       : Bib 引用文献源文件
+%%% mcmthesis.cls : LaTeX 格式文件
+%%% code/         : 附件代码文件夹
+%%% figures/      : 图片文件夹
+%%% src/*.tex     : 各个章节LaTeX 文档文件
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% 工具列表
+%%% 公式图片转代码：
+%%%             1. https://snip.mathpix.com/home
+%%%             2. https://simpletex.cn/ai/latex_ocr
+%%% 流程图工具：
+%%%             1. https://excalidraw.com/
+%%%             2. https://www.drawio.com/
+%%% 翻译工具：
+%%%             1. https://quillbot.com/translate/english-to-chinese
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 可能用到的网站
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% LaTeX公式编辑器：https://www.latexlive.com/
-%%% Diagram流程图绘制：https://www.drawio.com/
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 模板参数设置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass{mcmthsis}  % 文档类型
+\documentclass{mcmthesis}  % 文档类型
 \mcmsetup{
         CTeX = false,   % 使用 CTeX 套装时，设置为 true
         tcn = 9555,   % 队伍控制号
@@ -31,84 +36,132 @@
         titlepage = false,   % 标题页
         abstract = true  % 摘要
       }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 导入宏包和引用文献源
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{palatino}  % 帕拉提诺体字体宏包
-\usepackage{lipsum}  % 导入生成段落的宏包
-\usepackage[hyperref=true,style=ieee]{biblatex}  % biblatex参考文献宏包
-\addbibresource{ref.bib}  % 添加引用文献bib源
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Packages for Font
+%% 1
+\usepackage{mathptmx}  % 这是 Times 字体，中规中矩 
+%% 2
+% \usepackage{mathpazo}  % 这是 COMAP 官方杂志采用的更好看的 Palatino 字体，可替代以上的 mathptmx 宏包
+%% 3
+% \usepackage{newtxtext}  % Times New Roman
+% \usepackage{newtxmath}  % 如果你需要Times New Roman风格的数学符号
+%% 4
+% \usepackage{palatino}   % 帕拉提诺体字体宏包
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 文档信息设置
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Packages for Referenece
+\usepackage[hyperref=true,style=ieee]{biblatex}   % biblatex参考文献宏包
+\addbibresource{ref.bib}                          % 添加引用文献bib源
+
+%%% Packages for Tables
+\usepackage{booktabs}       % Assumption 表格样式
+\usepackage{multirow}       % 合并表格
+% \usepackage[table]{xcolor}  % 加载 xcolor 包并允许表格颜色
+
+%%% Packages for Graphs
+\usepackage{graphicx}     % 导入 graphicx 包以支持图片插入
+\usepackage{subcaption}   % 导入 subcaption 包以支持子图
+% \graphicspath{{./figures/}}  % 图片路径
+
+%%% Packages for PseudoCode
+\usepackage{amsmath}      % 数学公式
+\usepackage{algorithm}    % 伪代码
+\usepackage{algorithmic}  % 伪代码
+
+%%% Packages for Memo
+\usepackage{multicol} % 导入 multicol 包以支持多列布局
+\usepackage{lipsum}   % 仅用于生成示例文本
+\usepackage{fancyhdr} % 导入 fancyhdr 包以自定义页眉页脚
+\usepackage{geometry} % 导入 geometry 包以管理页面布局
+\usepackage{eso-pic}  % 导入 eso-pic 包以添加背景图片
+\usepackage{xcolor}   % 导入 xcolor 包以处理颜色
+\usepackage{tikz}     % 导入 tikz 包以创建复杂背景
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%   首页   %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}  % 文档
 \title{Submersible Rescue}  % 文章标题
 \author{\small Team 9555}  % 作者，开启标题页才会显示
 \date{\today}  % 日期，开启标题页才会显示
 
-\memoto{MCM office}  % 建议书目标
-\memofrom{MCM Team 9555}  % 建议书来源
-\memosubject{MCM}  % 建议书主题
-\memodate{\today}  % 建议书日期
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 文档开始
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{document}  % 文档
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%   摘要   %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}  % 摘要
-This is a summary.
-\begin{keywords}  % 关键词
-AHP; SAR(submersible search and rescue); Monte Carlo sampling; Runge-Kuta; Sensitivity Analysis.
-\end{keywords}  % 结束关键词
+
+	The 2023 Wimbledon \cite{vaswani2017attention} Gentlemen’s final witnessed a wonderful batter, a Spanish player ended great tennis player Novak Djokovic's Grand Slam. Not only did the match see a rising star apparence, but also revealed the crucial role of ``momentum" in tennis. In this regard, based on relevant data, we conduct in-deep studies of ``momentum" in tennis.
+
+	Firstly, we did the data cleaning. We determined the cumulative score ratio of a particular game as the label vector, then fused the physical time-series feature and the temporal features of the match phase as the input vector. After processing the data, we chose the LSTM model with the RNN framework as the basic framework of the model. Considering its objective position in the overall game, we used its variant BiLSTM. At the same time, we introduced residual structure, L2 regularization, and the dropout mechanism to avoid the overfitting problem and stacked a 3-layer network to increase the expressive power. We used a deep learning approach to train the model and visualized the results. By comparing the real data and the predicted data, we found our model can well capture the rapidly changing situation in the field. We calculated the probability of "winning under one's serve" as an indicator of a player's performance and compared it with a player’s probability. This method can quantify player performance and remove the effect of factors like servers.
+
+	For correlation between ``momentum" and ``swings" analysis, we quantify ``momentum". To construct a quantitative model, we use the physical definition and formula for ``momentum''$P=mv$ for reference and construct the initial model. Next, with the purpose of  making our model in line with the actual situation, we constantly try introducing parameters to optimize the initial model for the most suitable model.
+
+	Based on the final model, we denote ``swings" and make it harmonize with `` momentum".  Owing to the ternary discrete nature of ``swings"  data, we adopt  image analysis to explore the correlation between ``momentum" and ``swings".  After analyzing corresponding images and comparing with actual match scores, we conclude that there is indeed a correlation between ``momentum" and ``swings" and it may even determine the direction of the game to a certain extent.
+
+	We determined which places are the nodes where the momentum shifts. Since we took an approach similar to smoothing relative momentum, we only need to look at the places where the momentum crosses the zero point or drops off sharply. We looked at all the labels in the dataset, coded the features, such as one-hot coding, and numericalized some of the symbols to get some computable vectors of information about the features and used them as inputs to fit a simple multiple regression model to the "momentum". After the training, we sorted the features, and then analyzed them one by one to give suggestions to the athletes using these features.
+
+
+	\begin{keywords}  % 关键词
+		AHP; SAR(submersible search and rescue); Monte Carlo sampling; Runge-Kuta; Sensitivity Analysis.
+	\end{keywords}  % 结束关键词
 \end{abstract}  % 结束摘要
+
 \maketitle  % 生成sheet页
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%   目录   %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begingroup
+\setlength{\parskip}{0em}
 \tableofcontents  % 生成目录表
+\endgroup
 
-
-%%%%%%%%%%%%%%%%%% sheet页与目录页结束 %%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%   正文   %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage  % 开始新的一页
-\include{src/0_introduction}
-\include{src/1_assumption}
-\include{src/2_list_of_notation}
-\include{src/3_model_i}
-\include{src/4_model_ii}
-\include{src/5_model_iii}
-\include{src/6_sensitivity_analysis}
-\include{src/7_strengths_and_weaknesses}
 
-%%% 引用
+\input{src/1_introduction}
+\input{src/2_assumption_and_notations}
+\input{src/3_model_i}
+\input{src/4_model_ii}
+\input{src/5_model_iii}
+\input{src/6_sensitivity_analysis}
+\input{src/7_strengths_and_weaknesses}
+
+%%% Referenece
+\begingroup
+\setlength{\parskip}{0em}
 \newpage
-\printbibliography  % 打印引用文献列表
+\printbibliography[heading=bibintoc]  % 打印引用文献列表
+\endgroup
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%% 正文结束 %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%   Memo   %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\phantomsection % 为 hyperref 准备锚点
+\addcontentsline{toc}{section}{Memorandum} % 添加到目录
+\include{src/memo}
 
-\newpage
-\begin{appendices}  % 附录
+% \begin{appendices}  % 附录
+% \section{First appendix}  % 一级标题
+% Here are simulation programmes we used in our model as follow.\\
+% \textbf{C++ source code:}
+% \lstinputlisting[language=C++]{./code/main.cpp}
+% \section{Second appendix}  % 一级标题
+% \textbf{Python source code:}
+% \lstinputlisting[language=python]{./code/python.py}
+% \end{appendices}  % 附录结束
 
-\begin{memo}[Memorandum]  % 建议书
-	This is a memorandum.
-\end{memo}  % 建议书结束
-
-\section{First appendix}  % 一级标题
-
-Here are simulation programmes we used in our model as follow.\\
-\textbf{MATLAB source code:}
-\lstinputlisting[language=C++]{./code/main.cpp}
-
-\section{Second appendix}  % 一级标题
-
-\textbf{Python source code:}
-\lstinputlisting[language=python]{./code/python.py}
-
-\end{appendices}  % 附录结束
 
 \end{document}  % 文档结束
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

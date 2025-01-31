@@ -105,7 +105,8 @@
     \hypersetup{dvipdfm, hidelinks}
   \fi
 \fi
-\geometry{letterpaper, margin = 1in}
+% \geometry{letterpaper, margin = 1in}
+\geometry{left=1in,right=0.75in,top=1in,bottom=1in}
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{\small\sffamily \team}
@@ -245,49 +246,49 @@
     \make@keywords
   \fi%
 }
-\def\MCM@memoto{\relax}
-\newcommand{\memoto}[1]{\gdef\MCM@memoto{#1}}
-\def\MCM@memofrom{\relax}
-\newcommand{\memofrom}[1]{\gdef\MCM@memofrom{#1}}
-\def\MCM@memosubject{\relax}
-\newcommand{\memosubject}[1]{\gdef\MCM@memosubject{#1}}
-\def\MCM@memodate{\relax}
-\newcommand{\memodate}[1]{\gdef\MCM@memodate{#1}}
-\def\MCM@memologo{\relax}
-\newcommand{\memologo}[1]{\gdef\MCM@memologo{\protect #1}}
-\def\@letterheadaddress{\relax}
-\newcommand{\lhaddress}[1]{\gdef\@letterheadaddress{#1}}
-\newenvironment{memo}[1][Memorandum]{%
-  \pagestyle{plain}%
-  \ifthenelse{\equal{\MCM@memologo}{\relax}}{%
-    % without logo specified.
-  }{%
-    % with logo specified
-    \begin{minipage}[t]{\columnwidth}%
-      \begin{flushright}
-        \vspace{-0.6in}
-        \MCM@memologo
-        \vspace{0.5in}
-      \par\end{flushright}%
-    \end{minipage}%
-  }
-  \begin{center}
-    \LARGE\bfseries\scshape
-    #1
-  \end{center}
-  \begin{description}
-    \ifthenelse{\equal{\MCM@memoto}{\relax}}{}{\item [{To:}] \MCM@memoto}
-    \ifthenelse{\equal{\MCM@memofrom}{\relax}}{}{\item [{From:}] \MCM@memofrom}
-    \ifthenelse{\equal{\MCM@memosubject}{\relax}}{}{\item [{Subject:}] \MCM@memosubject}
-    \ifthenelse{\equal{\MCM@memodate}{\relax}}{}{\item [{Date:}] \MCM@memodate}
-  \end{description}
-  \par\noindent
-  \rule[0.5ex]{\linewidth}{0.1pt}\par
-  \bigskip{}
-}{%
-  \clearpage
-  \pagestyle{fancy}%
-}
+% \def\MCM@memoto{\relax}
+% \newcommand{\memoto}[1]{\gdef\MCM@memoto{#1}}
+% \def\MCM@memofrom{\relax}
+% \newcommand{\memofrom}[1]{\gdef\MCM@memofrom{#1}}
+% \def\MCM@memosubject{\relax}
+% \newcommand{\memosubject}[1]{\gdef\MCM@memosubject{#1}}
+% \def\MCM@memodate{\relax}
+% \newcommand{\memodate}[1]{\gdef\MCM@memodate{#1}}
+% \def\MCM@memologo{\relax}
+% \newcommand{\memologo}[1]{\gdef\MCM@memologo{\protect #1}}
+% \def\@letterheadaddress{\relax}
+% \newcommand{\lhaddress}[1]{\gdef\@letterheadaddress{#1}}
+% \newenvironment{memo}[1][Memorandum]{%
+%   \pagestyle{plain}%
+%   \ifthenelse{\equal{\MCM@memologo}{\relax}}{%
+%     % without logo specified.
+%   }{%
+%     % with logo specified
+%     \begin{minipage}[t]{\columnwidth}%
+%       \begin{flushright}
+%         \vspace{-0.6in}
+%         \MCM@memologo
+%         \vspace{0.5in}
+%       \par\end{flushright}%
+%     \end{minipage}%
+%   }
+%   \begin{center}
+%     \LARGE\bfseries\scshape
+%     #1
+%   \end{center}
+%   \begin{description}
+%     \ifthenelse{\equal{\MCM@memoto}{\relax}}{}{\item [{To:}] \MCM@memoto}
+%     \ifthenelse{\equal{\MCM@memofrom}{\relax}}{}{\item [{From:}] \MCM@memofrom}
+%     \ifthenelse{\equal{\MCM@memosubject}{\relax}}{}{\item [{Subject:}] \MCM@memosubject}
+%     \ifthenelse{\equal{\MCM@memodate}{\relax}}{}{\item [{Date:}] \MCM@memodate}
+%   \end{description}
+%   \par\noindent
+%   \rule[0.5ex]{\linewidth}{0.1pt}\par
+%   \bigskip{}
+% }{%
+%   \clearpage
+%   \pagestyle{fancy}%
+% }
 \newtheorem{Theorem}{Theorem}[section]
 \newtheorem{Lemma}[Theorem]{Lemma}
 \newtheorem{Corollary}[Theorem]{Corollary}

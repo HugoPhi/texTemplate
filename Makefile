@@ -1,52 +1,53 @@
-# Makefile for LaTeX Project with included sections
+#######################################################################
+########## Makefile for LaTeX Project with included sections ##########
+#######################################################################
+########## Copyright © 2025 Yunming Hu. All rights reserved. ##########
+#######################################################################
 
-# 文件名（不带扩展名）
 TEXFILE = main
-
-# 目标文件夹
 BUILDDIR = build
-
-# 输入文件夹
 FIGURESDIR = figures
 CODEDIR = code
-SRC = src  # 存放子章节的目录
+SRC = src
+BIB = ref
 
-# 编译命令
+# 编译工具以及选项
 LATEX = pdflatex -shell-escape -interaction=nonstopmode
 BIBTEX = biber
 
-# 输出文件
 PDF = $(BUILDDIR)/$(TEXFILE).pdf
 LOG = $(BUILDDIR)/$(TEXFILE).log
-AUX = $(BUILDDIR)/$(TEXFILE).aux
-BIB = $(BUILDDIR)/ref.bib
 
-# 创建build目录
 $(shell mkdir -p $(BUILDDIR)/src)
 
-# 默认目标
-all: $(PDF)
+all: $(PDF) log
 
-# 生成PDF
-$(PDF): $(TEXFILE).tex $(BUILDDIR)/$(TEXFILE).bib
+$(PDF): $(TEXFILE).tex $(BUILDDIR)/$(TEXFILE).bib $(wildcard $(SRC)/*.tex)
 	@echo "Compiling LaTeX file..."
-	$(LATEX) -output-directory=$(BUILDDIR) $(TEXFILE).tex
-	$(BIBTEX) $(BUILDDIR)/$(TEXFILE)
-	$(LATEX) -output-directory=$(BUILDDIR) $(TEXFILE).tex
-	$(LATEX) -output-directory=$(BUILDDIR) $(TEXFILE).tex
+	-$(LATEX) -output-directory=$(BUILDDIR) $(TEXFILE).tex
+	-$(BIBTEX) $(BUILDDIR)/$(TEXFILE)
+	-$(LATEX) -output-directory=$(BUILDDIR) $(TEXFILE).tex
+	-$(LATEX) -output-directory=$(BUILDDIR) $(TEXFILE).tex
 	@echo "Build finished. Output: $(PDF)"
 
-# 拷贝.bib文件到build目录
-$(BUILDDIR)/$(TEXFILE).bib: ref.bib
+$(BUILDDIR)/$(TEXFILE).bib: $(BIB).bib
 	@echo "Copying bib file..."
-	cp ref.bib $(BUILDDIR)
+	cp $(BIB).bib $(BUILDDIR)/$(TEXFILE).bib
 
-# 拷贝src中的文件到build目录
-$(BUILDDIR)/src/introduction.tex: $(SRC)/introduction.tex
-	@echo "Copying introduction.tex to build directory..."
-	cp $(SRC)/introduction.tex $(BUILDDIR)/src
 
-# 清理目标
+# show Warns & Errors
+log:
+	@echo ""
+	@echo "🔍 Displaying errors and warnings from $(LOG):" | lolcat
+	@echo ""
+	@grep -n -e "Error" $(BUILDDIR)/$(TEXFILE).log | sed 's/Error/\x1b[31m&\x1b[0m/'
+	@grep -n -e "Warning" $(BUILDDIR)/$(TEXFILE).log | grep -v "Package fancyhdr Warning" | sed 's/Warning/\x1b[33m&\x1b[0m/'
+	@if ! grep -v "Package fancyhdr Warning" $(BUILDDIR)/$(TEXFILE).log | grep -q -e "Error" -e "Warning" ; then \
+		echo "✨ Compile Passed!!!"; \
+	fi 
+	@echo ""
+
+
 clean:
 	@echo "Cleaning build files..."
 	rm -rf \
@@ -63,5 +64,6 @@ clean:
 		$(FIGURESDIR)/*.pdf \
 		# $(BUILDDIR)/*.pdf
 
-# 伪目标
-.PHONY: all clean
+
+
+.PHONY: all clean log
