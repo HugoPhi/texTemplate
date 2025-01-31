@@ -145,7 +145,7 @@ code
 
 ## LISENCE 
 
-> This project is licensed under the terms of the **Apache License 2.0**. See [LICENSE](./LICENSE) for more details.
+> This project is licensed under the terms of the **MIT**. See [LICENSE](./LICENSE) for more details.
 
 ## References
 
